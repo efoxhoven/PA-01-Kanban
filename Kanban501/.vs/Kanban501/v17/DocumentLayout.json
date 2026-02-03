@@ -1,10 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\erfox\\Desktop\\Kanaban\\Kanban501\\",
+  "WorkspaceRootPath": "C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1D5AD3C6-DD35-4EE2-A65A-0E55A4777BFE}|Kanban501.csproj|c:\\users\\erfox\\desktop\\kanaban\\kanban501\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{1D5AD3C6-DD35-4EE2-A65A-0E55A4777BFE}|Kanban501.csproj|c:\\users\\ella\\onedrive\\desktop\\school\\cis501\\kanban501\\kanban501\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D5AD3C6-DD35-4EE2-A65A-0E55A4777BFE}|Kanban501.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D5AD3C6-DD35-4EE2-A65A-0E55A4777BFE}|Kanban501.csproj|C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D5AD3C6-DD35-4EE2-A65A-0E55A4777BFE}|Kanban501.csproj|solutionrelative:task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D5AD3C6-DD35-4EE2-A65A-0E55A4777BFE}|Kanban501.csproj|C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{1D5AD3C6-DD35-4EE2-A65A-0E55A4777BFE}|Kanban501.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D5AD3C6-DD35-4EE2-A65A-0E55A4777BFE}|Kanban501.csproj|C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\addedit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D5AD3C6-DD35-4EE2-A65A-0E55A4777BFE}|Kanban501.csproj|solutionrelative:addedit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +26,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AddEdit.cs",
+              "DocumentMoniker": "C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\AddEdit.cs",
+              "RelativeDocumentMoniker": "AddEdit.cs",
+              "ToolTip": "C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\AddEdit.cs",
+              "RelativeToolTip": "AddEdit.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAwwAwAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T22:16:34.959Z",
+              "IsPinned": true
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
@@ -26,15 +51,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\erfox\\Desktop\\Kanaban\\Kanban501\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\erfox\\Desktop\\Kanaban\\Kanban501\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T18:51:58.278Z",
+              "WhenOpened": "2026-02-03T04:06:39.005Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Task.cs",
+              "DocumentMoniker": "C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\Task.cs",
+              "RelativeDocumentMoniker": "Task.cs",
+              "ToolTip": "C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\Task.cs",
+              "RelativeToolTip": "Task.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowB8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-03T03:53:54.807Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\Ella\\OneDrive\\Desktop\\School\\CIS501\\Kanban501\\Kanban501\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAiwD0AAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T21:36:28.947Z",
+              "EditorCaption": ""
             }
           ]
         }
