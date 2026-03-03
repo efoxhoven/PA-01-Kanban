@@ -18,6 +18,8 @@ namespace Kanban501
 
         public DateTime DueDate { get; set; }
 
+        public int Priority { get; set; }
+
 
         public override string ToString()
         {
@@ -28,12 +30,13 @@ namespace Kanban501
             return Name;
         }
 
-        public Task(string name, string resources, string status, DateTime dueDate)
+        public Task(string name, string resources, string status, DateTime dueDate, int priority)
         {
             Name = name;
             Resources = resources;
             Status = status;
             DueDate = dueDate;
+            Priority = priority;
         }
     }
 }

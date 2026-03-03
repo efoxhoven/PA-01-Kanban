@@ -16,7 +16,13 @@ namespace Kanban501
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            Form1 view = new Form1();
+            Controller controller = new Controller(view);
+ 
+            
+
+            Application.Run(view);
         }
     }
 }

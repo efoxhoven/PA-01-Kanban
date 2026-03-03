@@ -3,27 +3,56 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
+using static Kanban501.Form1;
 
 namespace Kanban501
 {
     public partial class Form1 : Form
     {
+        public delegate void InputHandler(string title, string resources, string status, DateTime dueDate, int priority);
+        private InputHandler inputHandler;
 
-        private List<Task> toDoTasks = new List<Task>();
-        private List<Task> workingTasks = new List<Task>();
-        private List<Task> doneTasks = new List<Task>();
+        public delegate void DeleteHandler(Task task);
+        private DeleteHandler deleteHandler;
 
+        public delegate void EditHandler(Task task, string title, string resources, string status, DateTime dueDate, int priority);
+        private EditHandler editHandler;
+
+        public delegate void CloseHandler();
+        private CloseHandler closeHandler;
+
+        //Registering handlers for the three main actions of the program: add, delete, and edit.
+        public void RegisterAdd(InputHandler handler)
+        {
+            inputHandler += handler;
+        }
+        public void RegisterDelete(DeleteHandler handler)
+        {
+            deleteHandler += handler;
+        }
+        public void RegisterEdit(EditHandler handler)
+        {
+            editHandler += handler;
+        }
+        public void RegisterClose(CloseHandler handler)
+        {
+                closeHandler += handler;
+        }
 
         public Form1()
         {
             InitializeComponent();
-            LoadTasks();
-            this.FormClosing += Form1_Closing; //subscribe method after it closes.
+            this.FormClosing += Form1_FormClosing;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            closeHandler?.Invoke();
         }
         #region
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -42,62 +71,33 @@ namespace Kanban501
         }
         #endregion
 
-        private void LoadTasks()
-        {
-            string file = "GoalActivity.txt";
-            if (!File.Exists(file)) { return; }
 
-            string[] lines = File.ReadAllLines(file);
-            foreach(string line in lines)
-            {
-                if (string.IsNullOrWhiteSpace(line)) { continue; }
-                string[] parts = line.Split(',');
-
-                Task task = new Task(parts[0], parts[1], parts[2], DateTime.Parse(parts[3]));
-                changeTaskColumn(task);
-            }
-            RefreshListBox();
-        }
-
-        private void Form1_Closing(object sender, FormClosingEventArgs e) { SaveTasks(); }
-
-        private void SaveTasks()
-        {
-            string file = "GoalActivity.txt";
-            List<Task> allTasks = new List<Task>();
-            List<string> lines = new List<string>();
-            allTasks.AddRange(toDoTasks);
-            allTasks.AddRange(workingTasks);
-            allTasks.AddRange(doneTasks);
-            foreach (Task t in allTasks)
-            {
-                lines.Add($"{t.Name},{t.Resources},{t.Status},{t.DueDate:MM/dd/yyyy}");
-            }
-            File.WriteAllLines(file, lines);
-        }
-
-        private void RefreshListBox()
+        public void RefreshDisplay(List<Task> tasks)
         {
             toDoBox.Items.Clear();
             workingOnBox.Items.Clear();
             doneBox.Items.Clear();
-            if (toDoBox.Items.Count >= 15 && workingOnBox.Items.Count >=3) {
+
+            foreach(Task t in tasks)
+            {
+                if (t.Status == "To Do")
+                {
+                    toDoBox.Items.Add(t);
+                }
+                else if (t.Status == "Working On")
+                {
+                    workingOnBox.Items.Add(t);
+                }
+                else if (t.Status == "Done")
+                {
+                    doneBox.Items.Add(t);
+                }
+            }
+            if (toDoBox.Items.Count >= 15 || workingOnBox.Items.Count >= 3)
+            {
                 newButton.Enabled = false; // Disable add button if limits are reached
             }
             else { newButton.Enabled = true; }
-
-            foreach (Task task in toDoTasks)
-            {
-                toDoBox.Items.Add(task);
-            }
-            foreach (Task task in workingTasks)
-            {
-                workingOnBox.Items.Add(task);
-            }
-            foreach (Task task in doneTasks)
-            {
-                doneBox.Items.Add(task);
-            }
         }
 
 
@@ -116,24 +116,6 @@ namespace Kanban501
 
         }
 
-        private void changeTaskColumn(Task task)
-        {
-            toDoTasks.Remove(task);
-            workingTasks.Remove(task);
-            doneTasks.Remove(task);
-            if (task.Status == "To Do" && toDoTasks.Count < 15)
-            {
-                toDoTasks.Add(task);
-            }
-            else if (task.Status == "Working On" && workingTasks.Count < 3)
-            {
-                workingTasks.Add(task);
-            }
-            else if (task.Status == "Done")
-            {
-                doneTasks.Add(task);
-            }
-        }
         
         /// <summary>
         /// Handles case where add button is clicked to build a new task.
@@ -146,25 +128,14 @@ namespace Kanban501
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    if (form.currentTask.Status == "To Do" && toDoTasks.Count < 15)
-                    {
-                        toDoTasks.Add(form.currentTask);
-                    }
-                    else if (form.currentTask.Status == "Working On" && workingTasks.Count < 3)
-                    {
-                        workingTasks.Add(form.currentTask);
-                    }
-                    else if (form.currentTask.Status == "Done")
-                    {
-                        doneTasks.Add(form.currentTask);
-                    }
-                    RefreshListBox();
+                    inputHandler?.Invoke(form.TaskName, form.TaskResources, form.TaskStatus, form.TaskDueDate, form.TaskPriority);
                 }
             }
         }
 
         private void editButton_Click(object sender, EventArgs e)
         {
+
             Task selected = null;
             if (toDoBox.SelectedItem == null && workingOnBox.SelectedItem == null && doneBox.SelectedItem == null) { return; } //If nothing is selected
             else if (toDoBox.SelectedItem != null)
@@ -184,10 +155,11 @@ namespace Kanban501
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    changeTaskColumn(selected);
-                    RefreshListBox();
+                    editHandler?.Invoke(selected, form.TaskName, form.TaskResources, form.TaskStatus, form.TaskDueDate, form.TaskPriority);
+                    
                 }
             }
+            
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -197,22 +169,21 @@ namespace Kanban501
             else if (toDoBox.SelectedItem != null)
             {
                 selected = (Task)toDoBox.SelectedItem;
-                toDoTasks.Remove(selected);
-                toDoBox.SelectedItem = null;
+                deleteHandler?.Invoke(selected);
             }
             else if (workingOnBox.SelectedItem != null)
             {
                 selected = (Task)workingOnBox.SelectedItem;
-                workingTasks.Remove(selected);
+                deleteHandler?.Invoke(selected);
                 workingOnBox.SelectedItem = null;
             }
             else if (doneBox.SelectedItem != null)
             {
                 selected = (Task)doneBox.SelectedItem;
-                doneTasks.Remove(selected);
+                deleteHandler?.Invoke(selected);
                 doneBox.SelectedItem = null;
             }
-            RefreshListBox();
+            
         }
     }
 }

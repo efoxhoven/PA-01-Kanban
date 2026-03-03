@@ -38,6 +38,8 @@
             this.resourcesBox = new System.Windows.Forms.TextBox();
             this.activityBox = new System.Windows.Forms.TextBox();
             this.statusSelection = new System.Windows.Forms.ComboBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.priorityBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -114,13 +116,13 @@
             // 
             // dueDateBox
             // 
+            this.dueDateBox.CustomFormat = "MM/dd/yyyy";
             this.dueDateBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dueDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dueDateBox.Location = new System.Drawing.Point(123, 172);
             this.dueDateBox.Name = "dueDateBox";
             this.dueDateBox.Size = new System.Drawing.Size(199, 21);
             this.dueDateBox.TabIndex = 6;
-            this.dueDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dueDateBox.CustomFormat = "MM/dd/yyyy";
             // 
             // resourcesBox
             // 
@@ -153,13 +155,40 @@
             this.statusSelection.Name = "statusSelection";
             this.statusSelection.Size = new System.Drawing.Size(99, 23);
             this.statusSelection.TabIndex = 9;
-            this.statusSelection.SelectedIndex = 0;
+            // 
+            // textBox5
+            // 
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(318, 112);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(130, 17);
+            this.textBox5.TabIndex = 11;
+            this.textBox5.Text = "Priority";
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            // 
+            // priorityBox
+            // 
+            this.priorityBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priorityBox.FormattingEnabled = true;
+            this.priorityBox.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2"});
+            this.priorityBox.Location = new System.Drawing.Point(359, 135);
+            this.priorityBox.Name = "priorityBox";
+            this.priorityBox.Size = new System.Drawing.Size(99, 23);
+            this.priorityBox.TabIndex = 12;
             // 
             // AddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(480, 291);
+            this.Controls.Add(this.priorityBox);
+            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.statusSelection);
             this.Controls.Add(this.activityBox);
             this.Controls.Add(this.resourcesBox);
@@ -190,5 +219,7 @@
         private System.Windows.Forms.TextBox resourcesBox;
         private System.Windows.Forms.TextBox activityBox;
         private System.Windows.Forms.ComboBox statusSelection;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ComboBox priorityBox;
     }
 }
